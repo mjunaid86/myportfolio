@@ -243,6 +243,15 @@ const services = [
 const resumeLink = {
   url: "https://drive.google.com/file/d/18f0I1xmTcQ0_j0SOj09U6owFwoiWn5Om/view?usp=sharing",
 };
+
+const coverLetterLink = {
+  url: "https://drive.google.com/file/d/1NxD7veEWk8wsOOorDZythh6-sFAok9IQ/view?usp=sharing",
+};
+
+const whatsAppLink = {
+  url: "https://wa.me/601116274968",
+};
+
 const dataportfolio = [
   {
     img: "https://picsum.photos/400/?grayscale",
@@ -321,9 +330,10 @@ const socialprofils = {
   github: "https://github.com/mjunaid86",
   facebook: "https://facebook.com/muhammadjk",
   linkedin: "https://www.linkedin.com/in/muhammadjkhan/",
-  twitter: "https://twitter.com",
+  twitter: "https://twitter.com/muhammadjk86",
   youtube: "https://youtube.com",
   twitch: "https://twitch.com",
+  whatsapp: "https://wa.me/601116274968",
 };
 export {
   meta,
@@ -342,4 +352,6 @@ export {
   skillsDatabase,
   skillsIndustryKnowledge,
   resumeLink,
+  coverLetterLink,
+  whatsAppLink,
 };

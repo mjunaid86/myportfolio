@@ -2,9 +2,9 @@ import React from "react";
 import "./style.css";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import Typewriter from "typewriter-effect";
-import { introdata, meta, resumeLink } from "../../content_option";
+import { introdata, meta, resumeLink, coverLetterLink } from "../../content_option";
 import { Link } from "react-router-dom";
-
+import { HiOutlineDownload } from "react-icons/hi";
 export const Home = () => {
   //Download Resum
   const downloadResumHandler = () => {
@@ -14,6 +14,15 @@ export const Home = () => {
     link.href = resumeLink.url;
     link.click();
   };
+  //Download Cover Letter
+  const downloadCoverLetterHandler = () => {
+    const link = document.createElement("a");
+    link.download = `bulkUpload.txt`;
+    link.target = "_blank";
+    link.href = coverLetterLink.url;
+    link.click();
+  };
+
   return (
     <HelmetProvider>
       <section id="home" className="home">
@@ -52,7 +61,7 @@ export const Home = () => {
                 <div className="intro_btn-action pb-5">
                   <Link to="/about" className="text_2">
                     <div id="button_p" className="ac_btn btn ">
-                      My Portfolio
+                      Portfolio
                       <div className="ring one"></div>
                       <div className="ring two"></div>
                       <div className="ring three"></div>
@@ -61,7 +70,16 @@ export const Home = () => {
 
                   <Link target="_blank" onClick={() => downloadResumHandler()}>
                     <div id="button_h" className="ac_btn btn">
-                      Download CV
+                      <HiOutlineDownload /> Resume
+                      <div className="ring one"></div>
+                      <div className="ring two"></div>
+                      <div className="ring three"></div>
+                    </div>
+                  </Link>
+
+                  <Link target="_blank" onClick={() => downloadCoverLetterHandler()}>
+                    <div id="button_h" className="ac_btn btn">
+                      <HiOutlineDownload /> Cover Letter
                       <div className="ring one"></div>
                       <div className="ring two"></div>
                       <div className="ring three"></div>

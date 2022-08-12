@@ -4,7 +4,10 @@ import "./style.css";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { meta } from "../../content_option";
 import { Container, Row, Col, Alert } from "react-bootstrap";
-import { contactConfig } from "../../content_option";
+import { contactConfig, resumeLink, coverLetterLink, whatsAppLink } from "../../content_option";
+import { Link } from "react-router-dom";
+import { FaWhatsappSquare } from "react-icons/fa";
+import { HiOutlineDownload } from "react-icons/hi";
 
 export const ContactUs = () => {
   const [formData, setFormdata] = useState({
@@ -29,12 +32,7 @@ export const ContactUs = () => {
     };
 
     emailjs
-      .send(
-        contactConfig.YOUR_SERVICE_ID,
-        contactConfig.YOUR_TEMPLATE_ID,
-        templateParams,
-        contactConfig.YOUR_USER_ID
-      )
+      .send(contactConfig.YOUR_SERVICE_ID, contactConfig.YOUR_TEMPLATE_ID, templateParams, contactConfig.YOUR_USER_ID)
       .then(
         (result) => {
           console.log(result.text);
@@ -64,6 +62,30 @@ export const ContactUs = () => {
     });
   };
 
+  //Download Resum
+  const downloadResumHandler = () => {
+    const link = document.createElement("a");
+    link.download = `bulkUpload.txt`;
+    link.target = "_blank";
+    link.href = resumeLink.url;
+    link.click();
+  };
+  //Download Cover Letter
+  const downloadCoverLetterHandler = () => {
+    const link = document.createElement("a");
+    link.download = `bulkUpload.txt`;
+    link.target = "_blank";
+    link.href = coverLetterLink.url;
+    link.click();
+  };
+  //whatsApp
+  const downloadWhatsAppHandler = () => {
+    const link = document.createElement("a");
+    link.download = `bulkUpload.txt`;
+    link.target = "_blank";
+    link.href = whatsAppLink.url;
+    link.click();
+  };
   return (
     <HelmetProvider>
       <Container>
@@ -83,22 +105,17 @@ export const ContactUs = () => {
             <Alert
               //show={formData.show}
               variant={formData.variant}
-              className={`rounded-0 co_alert ${
-                formData.show ? "d-block" : "d-none"
-              }`}
+              className={`rounded-0 co_alert ${formData.show ? "d-block" : "d-none"}`}
               onClose={() => setFormdata({ show: false })}
               dismissible
             >
               <p className="my-0">{formData.alertmessage}</p>
             </Alert>
           </Col>
-          <Col lg="5" className="mb-5">
+          <Col lg="7" className="mb-5">
             <h3 className="color_sec py-4">Get in touch</h3>
             <address>
-              <strong>Email:</strong>{" "}
-              <a href={`mailto:${contactConfig.YOUR_EMAIL}`}>
-                {contactConfig.YOUR_EMAIL}
-              </a>
+              <strong>Email:</strong> <a href={`mailto:${contactConfig.YOUR_EMAIL}`}>{contactConfig.YOUR_EMAIL}</a>
               <br />
               <br />
               {contactConfig.hasOwnProperty("YOUR_FONE") ? (
@@ -108,11 +125,36 @@ export const ContactUs = () => {
               ) : (
                 ""
               )}
+              <Link target="_blank" onClick={() => downloadResumHandler()}>
+                <div id="button_h" className="ac_btn btn">
+                  <HiOutlineDownload /> Resume
+                  <div className="ring one"></div>
+                  <div className="ring two"></div>
+                  <div className="ring three"></div>
+                </div>
+              </Link>
+              <Link target="_blank" onClick={() => downloadCoverLetterHandler()}>
+                <div id="button_h" className="ac_btn btn">
+                  <HiOutlineDownload /> Cover Letter
+                  <div className="ring one"></div>
+                  <div className="ring two"></div>
+                  <div className="ring three"></div>
+                </div>
+              </Link>
+              <Link target="_blank" onClick={() => downloadWhatsAppHandler()}>
+                <div id="button_h" className="ac_btn btn">
+                  <FaWhatsappSquare /> whatsApp
+                  <div className="ring one"></div>
+                  <div className="ring two"></div>
+                  <div className="ring three"></div>
+                </div>
+              </Link>
             </address>
-            <p>{contactConfig.description}</p>
+
+            {/* <p>{contactConfig.description}</p> */}
           </Col>
           <Col lg="7" className="d-flex align-items-center">
-            <form onSubmit={handleSubmit} className="contact__form w-100">
+            {/* <form onSubmit={handleSubmit} className="contact__form w-100">
               <Row>
                 <Col lg="6" className="form-group">
                   <input
@@ -157,7 +199,7 @@ export const ContactUs = () => {
                   </button>
                 </Col>
               </Row>
-            </form>
+            </form> */}
           </Col>
         </Row>
       </Container>
